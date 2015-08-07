@@ -1,0 +1,25 @@
+{
+  "name": "Subscription",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dataId": {
+      "type": "string",
+      "required": true
+    },
+    "options": {
+      "type": "object",
+      "required": true
+    },
+    "state": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
