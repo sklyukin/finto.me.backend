@@ -1,11 +1,34 @@
 import Micex from 'micex.api';
+import _ from 'lodash';
 
 let ENGINES;
 let ENGINE_AND_MARKETS = {};
 
 class micexService {
-  static requestLastMarketdata() {}
-
+  static requestLastMarketdata() {
+    let securities = {};
+    let promises = [];
+    for (let engine in ENGINE_AND_MARKETS) {
+      let markets = ENGINE_AND_MARKETS[engine];
+      for (let market of ENGINE_AND_MARKETS[engine]) {
+        let promise = Micex.securitiesMarketdata(engine, market)
+          .then((securitiesMarketdata) => {
+            for (let security of Object.values(securitiesMarketdata)) {
+              let id = security.node.id;
+              /* we can have same securites from multiple markets, so let's select
+               * with max volume
+               */
+              if (!securities[id] || (securities[id].node.volume < security.node.volume)) {
+                securities[id] = security;
+              }
+            }
+          })
+        promises.push(promise);
+      }
+    }
+    return Promise.all(promises)
+      .then(() => securities);
+  }
 
   static getEngines() {
     return ENGINES;
@@ -13,7 +36,10 @@ class micexService {
 
   static _fillMarketsForEngine(engine) {
     return Micex.markets(engine)
-      .then(markets => ENGINE_AND_MARKETS[engine] = markets);
+      .then(marketsDefinition => {
+        let markets = marketsDefinition.map(market => market.NAME);
+        ENGINE_AND_MARKETS[engine] = markets
+      });
   }
 
   static getConstansts() {
@@ -30,6 +56,7 @@ class micexService {
         return ENGINE_AND_MARKETS;
       });
   }
+
 }
 
 export default micexService;
