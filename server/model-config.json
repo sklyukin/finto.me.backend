@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "mongo",
-    "public" : false
+    "public": false
   },
   "AccessToken": {
     "dataSource": "mongo",
@@ -40,5 +40,13 @@
   "user": {
     "dataSource": "mongo",
     "public": true
+  },
+  "LastData": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "NotifyBaseModel": {
+    "dataSource": null,
+    "public": false
   }
 }

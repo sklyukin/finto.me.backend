@@ -1,5 +1,5 @@
 {
-  "name": "Subscription",
+  "name": "LastData",
   "base": "NotifyBaseModel",
   "idInjection": true,
   "options": {
@@ -9,13 +9,6 @@
     "dataId": {
       "type": "string",
       "required": true
-    },
-    "options": {
-      "type": "object",
-      "required": true
-    },
-    "state": {
-      "type": "object"
     }
   },
   "validations": [],

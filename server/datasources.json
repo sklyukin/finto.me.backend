@@ -1,6 +1,6 @@
 {
   "mongo": {
-    "database" : "notify",
+    "database": "notify",
     "name": "mongo",
     "connector": "mongodb"
   }

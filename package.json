@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "jshint ."
+    "pretest": "jshint .",
+    "fixtures": "node server/bin/fixtures-babel.js" 
   },
   "dependencies": {
     "babel": "^5.8.21",
