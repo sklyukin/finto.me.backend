@@ -1,12 +1,12 @@
 {
   "name": "LastData",
   "base": "NotifyBaseModel",
-  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "dataId": {
+      "id": true,
       "type": "string",
       "required": true
     }
