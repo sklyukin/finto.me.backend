@@ -4,7 +4,7 @@ import _ from 'lodash';
 let ENGINES;
 let ENGINE_AND_MARKETS = {};
 
-class micexService {
+class MicexService {
   static requestLastMarketdata() {
     let securities = {};
     let promises = [];
@@ -48,7 +48,7 @@ class micexService {
         ENGINES = engines
         let promises = [];
         for (var engine of engines) {
-          promises.push(micexService._fillMarketsForEngine(engine.name));
+          promises.push(MicexService._fillMarketsForEngine(engine.name));
         }
         return Promise.all(promises);
       })
@@ -59,4 +59,4 @@ class micexService {
 
 }
 
-export default micexService;
+export default MicexService;

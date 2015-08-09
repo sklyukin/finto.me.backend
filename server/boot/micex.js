@@ -1,10 +1,10 @@
-import micexService from '../services/micexService';
+import MicexService from '../services/micexService';
 
 export default (app) => {
-  micexService.getConstansts()
+  MicexService.getConstansts()
     .then(regularRequestData)
 
-  function regularRequestData(){
+  function regularRequestData() {
     requestAndSaveData().then(() => {
       let delayMinutes = 1;
       setTimeout(regularRequestData, delayMinutes * 60 * 1000);
@@ -12,7 +12,7 @@ export default (app) => {
   }
 
   function requestAndSaveData() {
-    return micexService.requestLastMarketdata()
+    return MicexService.requestLastMarketdata()
       .then((data) => {
         let LastData = app.models.LastData;
         let values = Object.values(data);

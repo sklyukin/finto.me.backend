@@ -3,5 +3,16 @@
     "database": "notify",
     "name": "mongo",
     "connector": "mongodb"
+  },
+  "email": {
+    "name": "email",
+    "connector": "mail",
+    "transports": [{
+      "type": "Mailgun",
+      "auth": {
+        "api_key": "our_key_here",
+        "domain": "klyukin.net"
+      }
+    }]
   }
 }

@@ -33,6 +33,10 @@
     "dataSource": "mongo",
     "public": false
   },
+  "Email": {
+    "dataSource": "email",
+    "public": false
+  },
   "Subscription": {
     "dataSource": "mongo",
     "public": true
