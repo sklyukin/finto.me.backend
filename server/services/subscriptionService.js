@@ -1,4 +1,4 @@
-import EmailService from '../services/emailService';
+import EmailService from './emailService';
 
 class SubscriptionService {
   static notifySubscription(subscription, lastData) {
@@ -8,7 +8,6 @@ class SubscriptionService {
       subject: 'Finance Alert',
       html: `Hey! <b>${subscription.dataId}</b> reached <b>${value}</b>!`
     });
-
     subscription.state.lastInformedValue = value;
     let percent = subscription.options.percentChange;
     if (percent) {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 let app = require('../server');
-let Email = app.models().Email;
+let Email = app.models.Email;
 
 class EmailService {
   static send(customParams) {
@@ -16,7 +16,6 @@ class EmailService {
       _.assign(params, customParams);
       Email.send(params, (err, mail) => {
         if (err) return reject(err);
-        console.log('successfully send email');
         return resolve(mail);
       });
     });
