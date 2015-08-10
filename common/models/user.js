@@ -1,5 +1,5 @@
-import timestampBehavior from '../behaviors/timestamps.js'
+import timestampBehavior from '../behaviors/timestamps.js';
 
-module.exports = (User) => {
-   User.observe('before save', timestampBehavior);
+module.exports = (user) => {
+   user.observe('before save', timestampBehavior);
 };

@@ -1,3 +1,4 @@
+import SubscriptionService from '../services/subscriptionService';
 import EmailService from '../services/emailService';
 
 export default (app) => {
@@ -9,12 +10,12 @@ export default (app) => {
     LastData.find()
       .then((lastDatas) => {
         let stack = lastDatas;
-        return proceedDataOneByOnePromise(stack)
+        return proceedDataOneByOnePromise(stack);
       })
-    .then(() => {
-      console.log('all notifyLoop data proceeded');
-      setTimeout(requestAndProceedLastData, 60* 1000);
-    });
+      .then(() => {
+        console.log('all notifyLoop data proceeded');
+        setTimeout(requestAndProceedLastData, 60 * 1000);
+      });
   }
 
 
@@ -50,11 +51,11 @@ export default (app) => {
         where: {
           dataId: lastData.dataId,
           or: [{
-            "state.maxValue": {
+            'state.maxValue': {
               'lte': value
             }
           }, {
-            "state.minValue": {
+            'state.minValue': {
               'gte': value
             }
           }]
@@ -65,7 +66,8 @@ export default (app) => {
           console.log(`Found ${subscriptions.length} subscriptions`);
           for (let subscription of subscriptions) {
             console.log('Subscription', subscription);
-            return notifySubscription(subscription, lastData);
+            return SubscriptionService.notifySubscription(subscription,
+              lastData);
           }
         }
         return null;
@@ -73,24 +75,6 @@ export default (app) => {
       .catch((error) => {
         console.log('we have an error');
         console.log(error);
-      })
+      });
   }
-
-  function notifySubscription(subscription, lastData) {
-    let value = lastData.value;
-    EmailService.send({
-      to: 'stas.msu@gmail.com',
-      subject: 'Finance Alert',
-      html: `Hey! <b>${subscription.dataId}</b> reached <b>${value}</b>!`
-    });
-
-    subscription.state.lastInformedValue = value;
-    let percent = subscription.options.percentChange;
-    if (percent) {
-      percent = percent / 100;
-      subscription.state.minValue = value * (1 - percent);
-      subscription.state.maxValue = value * (1 + percent);
-    }
-    return subscription.save();
-  }
-}
+};

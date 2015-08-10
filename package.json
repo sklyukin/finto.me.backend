@@ -1,9 +1,12 @@
 {
   "name": "NotifyAPI",
   "version": "0.1.0",
+  "description": "Notify Backend and API",
+  "license": "ISC",
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
+    "test": "mocha",
     "fixtures": "node server/bin/fixtures-babel.js"
   },
   "dependencies": {
@@ -25,7 +28,9 @@
     "loopback-explorer": "^1.1.0"
   },
   "devDependencies": {
-    "jshint": "^2.5.6"
+    "chai": "^3.2.0",
+    "jshint": "^2.5.6",
+    "sinon": "^1.15.4"
   },
   "repository": {
     "type": "",

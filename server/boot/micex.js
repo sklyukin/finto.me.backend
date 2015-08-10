@@ -2,13 +2,13 @@ import MicexService from '../services/micexService';
 
 export default (app) => {
   MicexService.getConstansts()
-    .then(regularRequestData)
+    .then(regularRequestData);
 
   function regularRequestData() {
     requestAndSaveData().then(() => {
       let delayMinutes = 5;
       setTimeout(regularRequestData, delayMinutes * 60 * 1000);
-    })
+    });
   }
 
   function requestAndSaveData() {
@@ -23,7 +23,7 @@ export default (app) => {
             value: security.node.last,
             data: security
           });
-        })
+        });
         console.log('starting saving Micex data');
         let promises = lastDatas.map(lastData => LastData.upsert(lastData));
         return Promise.all(promises);
@@ -37,4 +37,4 @@ export default (app) => {
         console.error(error);
       });
   }
-}
+};

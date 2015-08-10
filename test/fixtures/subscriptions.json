@@ -1,0 +1,41 @@
+{
+  "subscription1": {
+    "id": "1a1000000000000000000001",
+    "userId": "1a1000000000000000000001",
+    "dataId" : "USD000UTSTOM",
+    "options": {
+      "percentChange" : 1
+    },
+    "state": {
+      "lastInformedValue" : 60.12,
+      "maxValue" : 60.7212,
+      "minValue" : 59.5188
+    }
+  },
+  "subscription2": {
+    "id": "1a1000000000000000000002",
+    "userId": "1a1000000000000000000001",
+    "dataId" : "MICEXINDEXCF",
+    "options": {
+      "percentChange" : 1
+    },
+    "state": {
+      "lastInformedValue" : 1600,
+      "maxValue" : 1610,
+      "minValue" : 1590
+    }
+  },
+  "subscription3": {
+    "id": "1a1000000000000000000003",
+    "userId": "1a1000000000000000000001",
+    "dataId" : "RTSI",
+    "options": {
+      "percentChange" : 1
+    },
+    "state": {
+      "lastInformedValue" : 800,
+      "maxValue" : 810,
+      "minValue" : 790
+    }
+  }
+}

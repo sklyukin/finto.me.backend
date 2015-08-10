@@ -16,10 +16,10 @@ function simpleLoad(SingleModelName, pluralModelName) {
   });
   return Promise.all(promises)
     .then(() => console.log(`${pluralModelName}' fixtures are loaded`))
-    .catch((err) => console.log(`Error: ${err}`))
+    .catch((err) => console.log(`Error: ${err}`));
 }
 
 dataSource.automigrate('Everything', () => {
   simpleLoad('User', 'users')
-    .then(() => simpleLoad('Subscription', 'subscriptions'))
+    .then(() => simpleLoad('Subscription', 'subscriptions'));
 });

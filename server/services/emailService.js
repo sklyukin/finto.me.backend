@@ -1,12 +1,12 @@
 import _ from 'lodash';
 
 let app = require('../server');
-let Email = app.models.Email;
+let Email = app.models().Email;
 
 class EmailService {
   static send(customParams) {
-    new Promise((resolve, reject) => {
-      if (!customParams.to) throw "parameter 'TO' required for sendEmail";
+    return new Promise((resolve, reject) => {
+      if (!customParams.to) throw 'parameter "TO" required for sendEmail';
 
       let params = {
         from: 'no-reply-finance@klyukin.net',
@@ -21,6 +21,6 @@ class EmailService {
       });
     });
   }
-};
+}
 
 export default EmailService;
