@@ -6,7 +6,7 @@ export default (app) => {
 
   function regularRequestData() {
     requestAndSaveData().then(() => {
-      let delayMinutes = 1;
+      let delayMinutes = 5;
       setTimeout(regularRequestData, delayMinutes * 60 * 1000);
     })
   }
@@ -29,7 +29,8 @@ export default (app) => {
         return Promise.all(promises);
       })
       .then(() => {
-        console.log('Micex data saved');
+        let time = new Date();
+        console.log(`${time} Micex data saved`);
       })
       .catch((error) => {
         console.log('error occured');
