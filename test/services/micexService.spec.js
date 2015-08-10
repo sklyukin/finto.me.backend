@@ -10,7 +10,7 @@ describe('MicexService', () => {
   });
 
   it('Should requestLastMarketdata', function() {
-    this.timeout(6000);
+    this.timeout(10000);
     return MicexService.requestLastMarketdata();
   });
 });
