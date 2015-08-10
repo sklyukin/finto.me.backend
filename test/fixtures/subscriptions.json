@@ -4,7 +4,7 @@
     "userId": "1a1000000000000000000001",
     "dataId" : "USD000UTSTOM",
     "options": {
-      "percentChange" : 1
+      "percentChange" : 0.5
     },
     "state": {
       "lastInformedValue" : 60.12,
@@ -15,9 +15,9 @@
   "subscription2": {
     "id": "1a1000000000000000000002",
     "userId": "1a1000000000000000000001",
-    "dataId" : "MICEXINDEXCF",
+    "dataId" : "MXU5",
     "options": {
-      "percentChange" : 1
+      "percentChange" : 0.5
     },
     "state": {
       "lastInformedValue" : 1600,
@@ -28,9 +28,9 @@
   "subscription3": {
     "id": "1a1000000000000000000003",
     "userId": "1a1000000000000000000001",
-    "dataId" : "RTSI",
+    "dataId" : "RIU5",
     "options": {
-      "percentChange" : 1
+      "percentChange" : 0.5
     },
     "state": {
       "lastInformedValue" : 800,
