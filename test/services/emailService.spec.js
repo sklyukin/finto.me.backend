@@ -4,7 +4,7 @@ import sinon from 'sinon';
 
 let should = require('chai').should();
 
-describe('emailService', () => {
+describe('EmailService', () => {
   let Email = app.models.Email;
 
   before(() => {

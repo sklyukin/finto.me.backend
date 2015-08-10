@@ -3,6 +3,7 @@
     "dataId": "MICEXINDEXCF",
     "updated": "2015-08-10T14:42:28.058Z",
     "value": 1690.4400000000000546,
+    "title": "Индекс ММВБ",
     "data": {
       "SECID": "MICEXINDEXCF",
       "BOARDID": "SNDX",
@@ -31,7 +32,8 @@
       "node": {
         "last": 1690.4400000000000546,
         "volume": 21917583479.0000000000000000,
-        "id": "MICEXINDEXCF"
+        "id": "MICEXINDEXCF",
+        "friendlyTitle": "Индекс ММВБ"
       }
     }
   }

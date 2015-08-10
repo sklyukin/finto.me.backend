@@ -6,7 +6,7 @@ class SubscriptionService {
     EmailService.send({
       to: 'stas.msu@gmail.com',
       subject: 'Finance Alert',
-      html: `Hey! <b>${subscription.dataId}</b> reached <b>${value}</b>!`
+      html: `<b>${subscription.title}</b> достиг <b>${value}</b>!`
     });
     subscription.state.lastInformedValue = value;
     let percent = subscription.options.percentChange;

@@ -9,6 +9,14 @@
       "type": "string",
       "id": true,
       "required": true
+    },
+    "value": {
+      "type": "number",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

@@ -1,5 +1,5 @@
-import SubscriptionService from '../services/subscriptionService';
-import EmailService from '../services/emailService';
+import SubscriptionService from '../../services/subscriptionService';
+import EmailService from '../../services/emailService';
 
 export default (app) => {
   let LastData = app.models.LastData;

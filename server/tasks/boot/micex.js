@@ -1,4 +1,4 @@
-import MicexService from '../services/micexService';
+import MicexService from '../../services/micexService';
 
 export default (app) => {
   MicexService.getConstansts()
@@ -21,6 +21,7 @@ export default (app) => {
           return new LastData({
             dataId: security.node.id,
             value: security.node.last,
+            title: security.node.friendlyTitle,
             data: security
           });
         });

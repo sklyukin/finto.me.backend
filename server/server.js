@@ -18,6 +18,12 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
   // start the server if `$ node server.js`
-  if (require.main === module)
+  if (require.main === module) {
     app.start();
+    var path = __dirname + '/tasks';
+    console.log('will load path', path);
+    boot(app, path, function(err){
+      if (err) throw err;
+    });
+  }
 });
