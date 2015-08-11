@@ -19,8 +19,10 @@ describe('SubscriptionService.', () => {
   it('notifySubscription', () => {
     should.exist(Subscription);
     should.exist(SUBSCRIPTIONS.subscription1);
-    SubscriptionService.notifySubscription(subscription1, LASTDATAS.MICEX);
-    EmailService.send.calledOnce.should.equal(true);
-    subscription1.save.calledOnce.should.equal(true);
+    SubscriptionService.notifySubscription(subscription1, LASTDATAS.MICEX)
+      .then(() => {
+        EmailService.send.calledOnce.should.equal(true);
+        subscription1.save.calledOnce.should.equal(true);
+      });
   });
 });
