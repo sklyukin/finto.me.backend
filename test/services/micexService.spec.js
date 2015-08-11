@@ -5,12 +5,14 @@ import MicexService from '../../server/services/micexService';
 let should = require('chai').should();
 
 describe('MicexService', () => {
-  before(() => {
-    return MicexService.getConstansts();
-  });
+  before( () => MicexService.getConstansts());
 
   it('Should requestLastMarketdata', function() {
-    this.timeout(10000);
-    return MicexService.requestLastMarketdata();
+    this.timeout(20000);
+    return MicexService.requestLastMarketdata()
+      .then( (securities) => {
+        let rows = Object.values(securities);
+        rows.should.have.length.least(100);
+      });
   });
 });
