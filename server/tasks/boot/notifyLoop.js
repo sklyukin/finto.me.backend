@@ -1,4 +1,5 @@
-import SubscriptionService from '../../services/subscriptionService';
+import SubscriptionService from
+  '../../services/subscription/subscriptionService';
 import EmailService from '../../services/emailService';
 
 export default (app) => {
