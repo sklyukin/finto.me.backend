@@ -23,6 +23,12 @@
     "user": {
       "type": "belongsTo",
       "model": "user"
+    },
+    "lastData": {
+      "type": "hasOne",
+      "model": "LastData",
+      "foreignKey": "dataId",
+      "primaryKey": "dataId"
     }
   },
   "acls": [],

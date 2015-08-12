@@ -1,8 +1,13 @@
-require('babel/register');
+// In node.js env, polyfill might be already loaded (from any npm package),
+// that's why we do this check.
+if (!global._babelPolyfill) {
+  require('babel/register');
+}
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
+app.set('view engine', 'jade');
 
 app.start = function() {
   // start the web server
@@ -22,7 +27,7 @@ boot(app, __dirname, function(err) {
     app.start();
     var path = __dirname + '/tasks';
     console.log('will load path', path);
-    boot(app, path, function(err){
+    boot(app, path, function(err) {
       if (err) throw err;
     });
   }

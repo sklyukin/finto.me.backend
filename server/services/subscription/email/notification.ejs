@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Текущее значение</th>
+    <th>Изменение</th>
+    <th>Предыдущее значение</th>
+  </tr>
+  <% subscriptions.forEach(function(subscription){
+    var lastData = subscription.lastData();
+    var lastInformedValue = subscription.state.lastInformedValue;
+    var change = null;
+    if (lastInformedValue){
+      change = (lastData.value / lastInformedValue - 1) * 100;
+      change = change.toFixed(2);
+    }
+    var colorStyle = '';
+    if (change){
+      var color =  change > 0 ? 'green' : 'red';
+      colorStyle = 'color: '+ color + ';';
+    }
+    %>
+  <tr>
+    <td><%= lastData.title %></td>
+    <td><%= lastData.value %></td>
+    <td style="<%= colorStyle %>"><%= change %>%</td>
+    <td><%= lastInformedValue %></td>
+  </tr>
+<% }) %>
+</table>
