@@ -19,7 +19,7 @@
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
     "loopback-connector-mongodb": "^1.13.0",
-    "loopback-datasource-juggler": "^2.19.0",
+    "loopback-datasource-juggler": "sklyukin/loopback-datasource-juggler",
     "micex.api": "^0.2.1",
     "nodemailer-mailgun-transport": "^1.0.1",
     "path": "^0.11.14",
