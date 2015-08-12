@@ -6,6 +6,7 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint . | NODE_ENV=test npm run-script fixtures",
+    "start": "node .",
     "test": "NODE_ENV=test mocha",
     "fixtures": "node server/bin/fixtures-babel.js"
   },
