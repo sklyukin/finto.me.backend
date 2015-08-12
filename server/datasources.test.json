@@ -1,0 +1,7 @@
+{
+  "mongo": {
+    "database": "notify-test",
+    "name": "mongo",
+    "connector": "mongodb"
+  }
+}

@@ -14,7 +14,7 @@ describe('SubscriptionService.', () => {
 
   before(() => {
     sinon.stub(EmailService, 'send');
-    sinon.stub(subscription1, 'save');
+    sinon.stub(SubscriptionService, '_updateSubscriptionState');
   });
 
   it('notifySubscription', () => {
@@ -24,7 +24,7 @@ describe('SubscriptionService.', () => {
         LASTDATAS.MICEX)
       .then(() => {
         EmailService.send.calledOnce.should.equal(true);
-        subscription1.save.calledOnce.should.equal(true);
+        SubscriptionService._updateSubscriptionState.called.should.equal(true);
       });
   });
 });

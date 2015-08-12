@@ -15,7 +15,7 @@
   "subscription2": {
     "id": "1a1000000000000000000002",
     "userId": "1a1000000000000000000001",
-    "dataId" : "MXU5",
+    "dataId" : "MICEXINDEXCF",
     "options": {
       "percentChange" : 0.5
     },
@@ -27,6 +27,19 @@
   },
   "subscription3": {
     "id": "1a1000000000000000000003",
+    "userId": "1a1000000000000000000001",
+    "dataId" : "MXU5",
+    "options": {
+      "percentChange" : 0.5
+    },
+    "state": {
+      "lastInformedValue" : 1600,
+      "maxValue" : 1610,
+      "minValue" : 1590
+    }
+  },
+  "subscription4": {
+    "id": "1a1000000000000000000004",
     "userId": "1a1000000000000000000001",
     "dataId" : "RIU5",
     "options": {

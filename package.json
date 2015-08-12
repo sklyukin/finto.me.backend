@@ -5,8 +5,8 @@
   "license": "ISC",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "jshint .",
-    "test": "mocha",
+    "pretest": "jshint . | NODE_ENV=test npm run-script fixtures",
+    "test": "NODE_ENV=test mocha",
     "fixtures": "node server/bin/fixtures-babel.js"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "errorhandler": "^1.1.1",
+    "fs": "0.0.2",
     "lodash": "^3.10.1",
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
