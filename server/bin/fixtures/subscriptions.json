@@ -1,6 +1,5 @@
 {
   "subscription1": {
-    "id": "1a1000000000000000000001",
     "userId": "1a1000000000000000000001",
     "dataId" : "USD000UTSTOM",
     "options": {
@@ -13,29 +12,63 @@
     }
   },
   "subscription2": {
-    "id": "1a1000000000000000000002",
     "userId": "1a1000000000000000000001",
-    "dataId" : "MICEXINDEXCF",
+    "dataId" : "EUR_RUB__TOM",
     "options": {
-      "percentChange" : 1
+      "percentChange" : 3
     },
     "state": {
-      "lastInformedValue" : 1600,
-      "maxValue" : 1610,
-      "minValue" : 1590
+      "lastInformedValue" : 70,
+      "maxValue" : 71,
+      "minValue" : 69
     }
   },
   "subscription3": {
-    "id": "1a1000000000000000000003",
     "userId": "1a1000000000000000000001",
-    "dataId" : "RTSI",
+    "dataId" : "EURUSD000TOM",
+    "options": {
+      "percentChange" : 3
+    },
+    "state": {
+      "lastInformedValue" : 1.10,
+      "maxValue" : 1.11,
+      "minValue" : 1.09
+    }
+  },
+  "subscription4": {
+    "userId": "1a1000000000000000000001",
+    "dataId" : "MXU5",
     "options": {
       "percentChange" : 1
     },
     "state": {
-      "lastInformedValue" : 800,
-      "maxValue" : 810,
-      "minValue" : 790
+      "lastInformedValue" : 170000,
+      "maxValue" : 171000,
+      "minValue" : 169000
+    }
+  },
+  "subscription5": {
+    "userId": "1a1000000000000000000001",
+    "dataId" : "RIU5",
+    "options": {
+      "percentChange" : 1
+    },
+    "state": {
+      "lastInformedValue" : 85000,
+      "maxValue" : 86000,
+      "minValue" : 79000
+    }
+  },
+  "subscription6": {
+    "userId": "1a1000000000000000000001",
+    "dataId" : "GAZP",
+    "options": {
+      "percentChange" : 5
+    },
+    "state": {
+      "lastInformedValue" : 130,
+      "maxValue" : 140,
+      "minValue" : 120
     }
   }
 }

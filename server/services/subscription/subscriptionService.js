@@ -42,7 +42,6 @@ class SubscriptionService {
 
   //after user informed, let's update state
   static _updateSubscriptionState(subscription) {
-    console.log('expected to be called');
     let value = subscription.lastData().value;
     subscription.state.lastInformedValue = value;
     subscription.state.lastInformedDate = new Date();

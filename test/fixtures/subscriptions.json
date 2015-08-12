@@ -33,9 +33,9 @@
       "percentChange" : 0.5
     },
     "state": {
-      "lastInformedValue" : 1600,
-      "maxValue" : 1610,
-      "minValue" : 1590
+      "lastInformedValue" : 160000,
+      "maxValue" : 161000,
+      "minValue" : 159000
     }
   },
   "subscription4": {
@@ -46,9 +46,9 @@
       "percentChange" : 0.5
     },
     "state": {
-      "lastInformedValue" : 800,
-      "maxValue" : 810,
-      "minValue" : 790
+      "lastInformedValue" : 80000,
+      "maxValue" : 81000,
+      "minValue" : 79000
     }
   }
 }
