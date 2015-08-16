@@ -1,5 +1,5 @@
 import app from '../../server/server';
-import EmailService from '../../server/services/emailService';
+import EmailService from '../../server/services/email/emailService';
 import sinon from 'sinon';
 
 let should = require('chai').should();

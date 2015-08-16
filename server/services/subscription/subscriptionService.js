@@ -1,6 +1,7 @@
-import EmailService from '../emailService';
-
+import EmailService from '../email/emailService';
 import loopback from 'loopback';
+import _ from 'lodash';
+import clone from 'clone';
 
 let app = require('../../server');
 
@@ -16,7 +17,8 @@ class SubscriptionService {
             s => s.lastData() && s.lastData().value);
           if (user.email) {
             SubscriptionService.emailNotification({
-              user, subscription, lastData, subscriptions
+              user, subscription, lastData,
+              subscriptions: subscriptions.map(clone)
             });
           }
           let promises = subscriptions.map(
@@ -34,9 +36,9 @@ class SubscriptionService {
       subscriptions, user
     });
     EmailService.send({
+      html,
       to: user.email,
-      subject: `Уведомление: ${lastData.title}`,
-      html: html
+        subject: `Уведомление: ${lastData.title}`
     });
   }
 

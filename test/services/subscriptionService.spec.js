@@ -1,6 +1,6 @@
 import SubscriptionService from
   '../../server/services/subscription/subscriptionService';
-import EmailService from '../../server/services/emailService';
+import EmailService from '../../server/services/email/emailService';
 import app from '../../server/server';
 import sinon from 'sinon';
 import SUBSCRIPTIONS from '../fixtures/subscriptions';
