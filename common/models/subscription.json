@@ -2,6 +2,7 @@
   "name": "Subscription",
   "base": "NotifyBaseModel",
   "idInjection": true,
+  "strict": true,
   "options": {
     "validateUpsert": true
   },

@@ -52,8 +52,11 @@ class SubscriptionService {
     //preventing spam, should be removed here in future
     percent = percent > 0.2 ? percent : 0.2;
     percent = percent / 100;
-    subscription.state.minValue = value * (1 - percent);
-    subscription.state.maxValue = value * (1 + percent);
+    subscription.state.minValue = value - percent * Math.abs(value);
+    subscription.state.maxValue = value + percent * Math.abs(value);
+
+    //seems a bug in strongloop, so we will remove manually
+    delete subscription.__data.lastData;
     return subscription.save();
   }
 }
