@@ -12,6 +12,10 @@ class MicexService {
     let promises = MICEX_CONSTANTS.markets.map((row) => {
       let engine = row.trade_engine_name;
       let market = row.market_name;
+        //we skip REPO market, as it intersect with shares
+      if (market === 'ccp'){
+        return Promise.resolve();
+      }
       return Micex.securitiesMarketdata(engine, market)
         .then((securitiesMarketdata) => {
           for (let security of Object.values(securitiesMarketdata)) {

@@ -6,7 +6,7 @@ export default (app) => {
 
   function regularRequestData() {
     requestAndSaveData().then(() => {
-      let delayMinutes = 5;
+      let delayMinutes = 1;
       setTimeout(regularRequestData, delayMinutes * 60 * 1000);
     });
   }

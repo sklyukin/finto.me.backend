@@ -64,7 +64,6 @@ export default (app) => {
       })
       .then((subscriptions) => {
         if (subscriptions.length) {
-          console.log(`new value - ${value}`);
           console.log(`Found ${subscriptions.length} subscriptions`);
           for (let subscription of subscriptions) {
             console.log('Subscription', subscription);
