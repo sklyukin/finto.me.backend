@@ -45,16 +45,7 @@ class SubscriptionService {
   //after user informed, let's update state
   static _updateSubscriptionState(subscription) {
     let value = subscription.lastData().value;
-    subscription.state.lastInformedValue = value;
-    subscription.state.lastInformedDate = new Date();
-    let percent = subscription.options.percentChange;
-    percent = percent ? percent : 1;
-    //preventing spam, should be removed here in future
-    percent = percent > 0.2 ? percent : 0.2;
-    percent = percent / 100;
-    subscription.state.minValue = value - percent * Math.abs(value);
-    subscription.state.maxValue = value + percent * Math.abs(value);
-
+    subscription.recalculateState(value);
     //seems a bug in strongloop, so we will remove manually
     delete subscription.__data.lastData;
     return subscription.save();

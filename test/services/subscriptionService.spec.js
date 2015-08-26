@@ -8,7 +8,7 @@ import LASTDATAS from '../fixtures/lastDatas';
 
 let should = require('chai').should();
 
-describe('SubscriptionService.', () => {
+describe('SubscriptionService', () => {
   let Subscription = app.models.Subscription;
   let subscription1 = new Subscription(SUBSCRIPTIONS.subscription1);
 
