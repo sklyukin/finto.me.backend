@@ -16,7 +16,9 @@
       "required": true
     },
     "state": {
-      "type": "object"
+      "type": "object",
+      "required" : true,
+      "default": {}
     }
   },
   "validations": [],
