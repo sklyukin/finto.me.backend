@@ -49,6 +49,9 @@ module.exports = (Subscription) => {
     let state = instance.state;
     if (state.lastInformedValue !== undefined) {
       instance.recalculateState(state.lastInformedValue);
+      instance.save().then(() => {
+        next();
+      });
       return next();
     }
 
