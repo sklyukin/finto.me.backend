@@ -11,14 +11,33 @@ module.exports = (Subscription) => {
 
   //update state to last informed value
   function recalculateState(value) {
-    this.state.lastInformedValue = value;
-    this.state.lastInformedDate = new Date();
+    let changed = false;
+    if (value !== this.state.lastInformedValue) {
+      this.state.lastInformedValue = value;
+      this.state.lastInformedDate = new Date();
+      changed = true;
+    }
     let percent = this.options.percentChange;
     //preventing spam, should be removed here in future
     percent = percent > 0.2 ? percent : 0.2;
     percent = percent / 100;
-    this.state.minValue = value - percent * Math.abs(value);
-    this.state.maxValue = value + percent * Math.abs(value);
+
+    let minValue = value - percent * Math.abs(value);
+    let maxValue = value + percent * Math.abs(value);
+
+    let minDiff = Math.abs(minValue - this.state.minValue);
+    let maxDiff = Math.abs(maxValue - this.state.maxValue);
+
+    if (minDiff > 10 * Number.EPSILON) {
+      this.state.minValue = minValue;
+      changed = true;
+    }
+
+    if (maxDiff > 10 * Number.EPSILON) {
+      this.state.maxValue = maxValue;
+      changed = true;
+    }
+    return changed;
   }
 
   function calculateFieldsForNew(ctx, next) {
@@ -48,21 +67,27 @@ module.exports = (Subscription) => {
     let instance = ctx.instance;
     let state = instance.state;
     if (state.lastInformedValue !== undefined) {
-      instance.recalculateState(state.lastInformedValue);
-      instance.save().then(() => {
-        next();
-      });
-      return next();
+      updateIfNeccessary(state.lastInformedValue);
+      return;
     }
 
     //if we never informed user (new subscription) - let's use latest value
     let LastData = Subscription.app.models.LastData;
     LastData.findById(instance.dataId)
       .then((lastData) => {
-        instance.recalculateState(lastData.value);
+        updateIfNeccessary(lastData.value);
+        return;
+      });
+
+    function updateIfNeccessary(value) {
+      let changed = instance.recalculateState(value);
+      if (changed) {
         instance.save().then(() => {
           next();
         });
-      });
+      } else {
+        next();
+      }
+    }
   }
 };
