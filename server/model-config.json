@@ -2,8 +2,9 @@
   "_meta": {
     "sources": [
       "loopback/common/models",
-      "loopback/server/models",
+      "loopback-component-passport/lib/models",
       "../common/models",
+      "../common/models/auth",
       "./models"
     ],
     "mixins": [
@@ -12,6 +13,18 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "accessToken": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "userCredential": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "userIdentity": {
+    "dataSource": "mongo",
+    "public": false
   },
   "User": {
     "dataSource": "mongo",

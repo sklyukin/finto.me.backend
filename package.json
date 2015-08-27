@@ -22,12 +22,16 @@
     "lodash": "^3.10.1",
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
+    "loopback-component-passport": "^1.5.0",
     "loopback-connector-mongodb": "^1.13.0",
     "loopback-datasource-juggler": "sklyukin/loopback-datasource-juggler",
     "micex.api": "^0.2.2",
     "nodemailer-mailgun-transport": "^1.0.1",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
     "path": "^0.11.14",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "url": "^0.10.3"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"

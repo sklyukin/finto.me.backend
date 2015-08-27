@@ -5,9 +5,9 @@ if (!global._babelPolyfill) {
 }
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var passportService = require('./auth/passportService');
 
 var app = module.exports = loopback();
-app.set('view engine', 'jade');
 
 app.start = function() {
   // start the web server
@@ -22,6 +22,7 @@ app.start = function() {
 boot(app, __dirname, function(err) {
   if (err) throw err;
 
+  passportService(app);
   // start the server if `$ node server.js`
   if (require.main === module) {
     app.start();

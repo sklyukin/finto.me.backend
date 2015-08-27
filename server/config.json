@@ -2,6 +2,9 @@
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "port": 3000,
+  "webApp":{
+    "url": "http://localhost:3100"
+  },
   "remoting": {
     "context": {
       "enableHttpContext": false
