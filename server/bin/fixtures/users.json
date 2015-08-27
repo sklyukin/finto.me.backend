@@ -3,7 +3,6 @@
     "id": "1a1000000000000000000001",
     "email": "stas.msu@gmail.com",
     "password": "stan",
-    "firstName": "Stanislav",
-    "lastName": "Klyukin"
+    "displayName": "Stanislav Klyukin"
   }
 }

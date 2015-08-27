@@ -69,11 +69,8 @@ function customCallbackWrapper({strategy, opts, passport, app}) {
 
         // this is needed or query is ignored. See url module docs.
         delete redirect.search;
-
         redirect.query = {
-          'access_token': info.accessToken.id,
-          // Note the .toString here is necessary.
-          'userId': user.id.toString()
+          jwt: JSON.stringify(info.accessToken)
         };
         // Put the url back together. It should now have params set.
         redirect = url.format(redirect);
