@@ -64,10 +64,8 @@ function customCallbackWrapper({strategy, opts, passport, app}) {
         if (!user) {
           return res.redirect(WEB_APP_URL);
         }
-        if (_.has(info, 'identity.profile.displayName')) {
-          user.displayName = info.identity.profile.displayName;
-          user.save();
-        }
+        //we will set displayName && email when necessary
+        updateUserWithInfo(user, info);
         // Add the tokens to the callback as params.
         var redirect = url.parse(WEB_APP_URL, true);
 
@@ -82,4 +80,15 @@ function customCallbackWrapper({strategy, opts, passport, app}) {
       }
     )(req, res, next);
   };
+}
+
+function updateUserWithInfo(user, info) {
+  let changed = false;
+  if (_.has(info, 'identity.profile.displayName')) {
+    user.displayName = info.identity.profile.displayName;
+    changed = true;
+  }
+  if (changed) {
+    return user.save();
+  }
 }

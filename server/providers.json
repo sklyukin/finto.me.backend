@@ -7,6 +7,7 @@
     "callbackURL": "/auth/facebook/callback",
     "authPath": "/auth/facebook",
     "callbackPath": "/auth/facebook/callback",
+    "profileFields": ["id", "birthday", "displayName", "email", "first_name", "gender", "last_name"],
     "scope": ["email"]
   },
   "google-login": {
