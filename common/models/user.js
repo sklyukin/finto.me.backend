@@ -10,7 +10,6 @@ module.exports = (user) => {
     if (!ctx.isNewInstance || (!App.isWebRequest() && (process.env.NODE_ENV == 'test'))) {
       return Promise.resolve();
     }
-    console.log('going to add subscriptions');
     let Subscription = user.app.models.Subscription;
 
     let defaultSubscriptions = [
@@ -21,8 +20,6 @@ module.exports = (user) => {
     ];
 
     let userId = ctx.instance.id;
-    console.log('userId', userId);
-    console.log('going to create promises');
     let promises = defaultSubscriptions.map((data) => {
       data.userId = userId;
       return Subscription.create(data).then((subscription) => {
