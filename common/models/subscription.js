@@ -25,18 +25,28 @@ module.exports = (Subscription) => {
     let minValue = value - percent * Math.abs(value);
     let maxValue = value + percent * Math.abs(value);
 
-    let minDiff = Math.abs(minValue - this.state.minValue);
-    let maxDiff = Math.abs(maxValue - this.state.maxValue);
-
-    if (minDiff > 10 * Number.EPSILON) {
+    if (this.state.minValue) {
+      let minDiff = Math.abs(minValue - this.state.minValue);
+      if (minDiff > 10 * Number.EPSILON) {
+        this.state.minValue = minValue;
+        changed = true;
+      }
+    } else {
       this.state.minValue = minValue;
       changed = true;
     }
 
-    if (maxDiff > 10 * Number.EPSILON) {
+    if (this.state.maxValue) {
+      let maxDiff = Math.abs(maxValue - this.state.maxValue);
+      if (maxDiff > 10 * Number.EPSILON) {
+        this.state.maxValue = maxValue;
+        changed = true;
+      }
+    } else {
       this.state.maxValue = maxValue;
       changed = true;
     }
+
     return changed;
   }
 
