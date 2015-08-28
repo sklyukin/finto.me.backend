@@ -1,6 +1,6 @@
 {
   "mongo": {
-    "database": "notify-test",
+    "database": "fintome-test",
     "name": "mongo",
     "connector": "mongodb"
   }
