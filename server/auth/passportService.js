@@ -1,8 +1,9 @@
 let loopback = require('loopback');
 let url = require('url');
 let FacebookStrategy = require('passport-facebook').Strategy;
+let _ = require('lodash');
 
-export default function(app) {
+export default function (app) {
   // Create an instance of PassportConfigurator with the app instance
   let PassportConfigurator =
     require('loopback-component-passport').PassportConfigurator;
@@ -34,10 +35,10 @@ export default function(app) {
     var opts = config[strategy];
     opts.session = opts.session !== false;
     /* We can create a customCallback to set params on the callback url.
-    // This will be called when the path is registered using
-    // app.get("/callback/path", opts.customCallback);
-    // inside passportConfigurator.configureProvider();
-    // res, req, and next are passed in via express.*/
+     // This will be called when the path is registered using
+     // app.get("/callback/path", opts.customCallback);
+     // inside passportConfigurator.configureProvider();
+     // res, req, and next are passed in via express.*/
     opts.customCallback = customCallbackWrapper({strategy, opts, passport, app});
 
     passportConfigurator.configureProvider(strategy, opts);
@@ -56,13 +57,16 @@ function customCallbackWrapper({strategy, opts, passport, app}) {
       },
       //See http://passportjs.org/guide/authenticate/
       // err, user, and info are passed to this by passport
-      function(err, user, info) {
+      function (err, user, info) {
         if (err) {
           return next(err);
         }
         if (!user) {
-          // TODO - we might want to add some params here too for failures.
-          return res.redirect(opts.failureRedirect);
+          return res.redirect(WEB_APP_URL);
+        }
+        if (_.has(info, 'identity.profile.displayName')) {
+          user.displayName = info.identity.profile.displayName;
+          user.save();
         }
         // Add the tokens to the callback as params.
         var redirect = url.parse(WEB_APP_URL, true);
