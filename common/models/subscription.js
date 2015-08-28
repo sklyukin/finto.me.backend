@@ -2,12 +2,13 @@ import App from '../../server/services/App.js';
 
 module.exports = (Subscription) => {
   Subscription.prototype.recalculateState = recalculateState;
+  Subscription.prototype.recalculateAndUpdateState = recalculateAndUpdateState;
   Subscription.observe('before save', calculateFieldsForNew);
   /*e.g. in case percentChange option has change, or just first
    * time Subscription was added, we need to calculate minValue / maxValue
    * 'after save' is used for simplicity - instance available always
    */
-  Subscription.observe('after save', recalculateStateForAPI);
+  Subscription.observe('after save', recalculateAndUpdateStateForAPI);
 
   //update state to last informed value
   function recalculateState(value) {
@@ -70,34 +71,28 @@ module.exports = (Subscription) => {
       });
   }
 
-  function recalculateStateForAPI(ctx, next) {
+  function recalculateAndUpdateStateForAPI(ctx) {
     if (!App.isWebRequest()) {
-      return next();
+      return Promise.resolve();
     }
-    let instance = ctx.instance;
-    let state = instance.state;
+    return ctx.instance.recalculateAndUpdateState();
+  }
+
+  function recalculateAndUpdateState() {
+    let subscription = this;
+    let state = this.state;
     if (state.lastInformedValue !== undefined) {
-      updateIfNeccessary(state.lastInformedValue);
-      return;
+      return updateIfNecessary(state.lastInformedValue);
     }
 
     //if we never informed user (new subscription) - let's use latest value
     let LastData = Subscription.app.models.LastData;
-    LastData.findById(instance.dataId)
-      .then((lastData) => {
-        updateIfNeccessary(lastData.value);
-        return;
-      });
+    return LastData.findById(this.dataId)
+      .then((lastData) => updateIfNecessary(lastData.value));
 
-    function updateIfNeccessary(value) {
-      let changed = instance.recalculateState(value);
-      if (changed) {
-        instance.save().then(() => {
-          next();
-        });
-      } else {
-        next();
-      }
+    function updateIfNecessary(value) {
+      let changed = subscription.recalculateState(value);
+      return (changed) ? subscription.save() : Promise.resolve();
     }
   }
 };
