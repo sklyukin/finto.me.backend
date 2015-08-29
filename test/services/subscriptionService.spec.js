@@ -13,7 +13,7 @@ describe('SubscriptionService', () => {
   let subscription1 = new Subscription(SUBSCRIPTIONS.subscription1);
 
   before(() => {
-    sinon.stub(EmailService, 'send');
+    sinon.stub(EmailService, 'send', () => Promise.resolve());
     sinon.stub(SubscriptionService, '_updateSubscriptionState');
   });
 
@@ -21,7 +21,7 @@ describe('SubscriptionService', () => {
     should.exist(Subscription);
     should.exist(SUBSCRIPTIONS.subscription1);
     return SubscriptionService.notifySubscription(subscription1,
-        LASTDATAS.MICEX)
+      LASTDATAS.MICEX)
       .then(() => {
         EmailService.send.calledOnce.should.equal(true);
         SubscriptionService._updateSubscriptionState.called.should.equal(true);
