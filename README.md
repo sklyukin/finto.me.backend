@@ -8,7 +8,8 @@ Users can subscribe to some `MICEX` quotes, and they will be notified when quote
 
 
 ## About
-Based on [loopback.io](http://loopback.io) framework.
+Based on [loopback.io](http://loopback.io) framework.  
+Angular2 Frontend - [https://github.com/sklyukin/finto.me.web](https://github.com/sklyukin/finto.me.web)
 
 ## Installation
 ```
