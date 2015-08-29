@@ -1,0 +1,8 @@
+{
+  "webApp":{
+    "url": "http://finto.me"
+  },
+  "email":{
+    "fromDomain": "finto.me"
+  }
+}

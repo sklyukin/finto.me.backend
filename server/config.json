@@ -5,6 +5,9 @@
   "webApp":{
     "url": "http://localhost:3100"
   },
+  "email":{
+    "fromDomain" : "dev.finto.me"
+  },
   "remoting": {
     "context": {
       "enableHttpContext": false

@@ -35,11 +35,11 @@ class SubscriptionService {
     let html = render({
       subscriptions, user
     });
-    EmailService.send({
+    return EmailService.send({
       html,
       to: user.email,
         subject: `Уведомление: ${lastData.title}`
-    });
+    }).catch(err => console.error('emailNotification Error: ', err));
   }
 
   //after user informed, let's update state
