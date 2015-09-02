@@ -14,7 +14,7 @@ class EmailService {
       if (!customParams.to) throw 'parameter "to" required for sendEmail';
       if (!customParams.html) throw 'parameter "html" required for sendEmail';
       let params = {
-        from: `noreply@${FROM_DOMAIN}`,
+        from: `Finto.me <noreply@${FROM_DOMAIN}>`,
         subject: 'finto.me'
       };
       _.assign(params, customParams);
