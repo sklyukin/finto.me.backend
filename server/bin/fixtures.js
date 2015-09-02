@@ -32,8 +32,9 @@ function simpleLoad(SingleModelName, pluralModelName) {
   });
 }
 
-dataSource.automigrate('Everything', () => {
-  simpleLoad('User', 'users')
+dataSource.automigrate(['user', 'userIdentity', 'Subscriptions', 'LastData' ], () => {
+  simpleLoad('user', 'users')
+    .then(() => simpleLoad('userIdentity', 'userIdentities'))
     .then(() => simpleLoad('Subscription', 'subscriptions'))
     .then(() => simpleLoad('LastData', 'lastDatas'))
     .then(() => {
