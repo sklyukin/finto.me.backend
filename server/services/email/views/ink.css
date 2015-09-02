@@ -335,13 +335,8 @@ h1 {
   font-size: 30px;
   text-transform: uppercase;
 }
-
-h1 a,
-h1 a:hover,
-h1 a:active,
-h1 a:visited{
-  color: white !important;
-  text-decoration: none;
+.header-pad{
+  padding-left: 15px;
 }
 
 
@@ -380,6 +375,14 @@ a:active {
 
 a:visited {
   color: #15c !important;
+}
+
+h1 a,
+h1 a:hover,
+h1 a:active,
+h1 a:visited{
+  color: #FFF !important;
+  text-decoration: none;
 }
 
 h2 a,
