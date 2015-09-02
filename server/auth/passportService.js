@@ -1,7 +1,7 @@
 let loopback = require('loopback');
-let url = require('url');
 let FacebookStrategy = require('passport-facebook').Strategy;
 let _ = require('lodash');
+import {AuthService} from './AuthService';
 
 export default function (app) {
   // Create an instance of PassportConfigurator with the app instance
@@ -47,7 +47,6 @@ export default function (app) {
 
 function customCallbackWrapper({strategy, opts, passport, app}) {
   const WEB_APP_URL = app.get('webApp').url;
-
   return (req, res, next) => {
     // Note that we have to only use variables that are in scope
     // right now, like opts.
@@ -62,21 +61,14 @@ function customCallbackWrapper({strategy, opts, passport, app}) {
           return next(err);
         }
         if (!user) {
+          console.error('user not returned for passport.js');
           return res.redirect(WEB_APP_URL);
         }
         //we will set displayName && email when necessary
         updateUserWithInfo(user, info);
-        // Add the tokens to the callback as params.
-        var redirect = url.parse(WEB_APP_URL, true);
 
-        // this is needed or query is ignored. See url module docs.
-        delete redirect.search;
-        redirect.query = {
-          jwt: JSON.stringify(info.accessToken)
-        };
-        // Put the url back together. It should now have params set.
-        redirect = url.format(redirect);
-        return res.redirect(redirect);
+        let url = AuthService.WebAppLinkWithToken(info.accessToken);
+        return res.redirect(url);
       }
     )(req, res, next);
   };

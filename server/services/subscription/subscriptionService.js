@@ -37,8 +37,8 @@ class SubscriptionService {
     });
     return EmailService.send({
       html,
-      to: user.email,
-        subject: `Уведомление: ${lastData.title}`
+      user,
+      subject: `Уведомление: ${lastData.title}`
     }).catch(err => console.error('emailNotification Error: ', err));
   }
 

@@ -1,5 +1,5 @@
 let loopback = require('loopback'),
-  app = require('../../server/server');
+  app = require('../server');
 
 class App {
   static isWebRequest() {
