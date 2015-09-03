@@ -14,14 +14,15 @@ class MicexService {
       let market = row.market_name;
       //[ccp] we skip REPO market, as it intersect with shares
       //[EQDP] we will skip huge packets market, as sometimes before trade it has outdated LAST PRICE
-      if (['ccp', 'EQDP'].indexOf(market) !== -1) {
+      if (['ccp'].indexOf(market) !== -1) {
         return Promise.resolve();
       }
       return Micex.securitiesMarketdata(engine, market)
         .then((securitiesMarketdata) => {
           for (let security of Object.values(securitiesMarketdata)) {
+            if (security.BOARDID && (['EQDP'].indexOf(security.BOARDID) !== -1)) continue;
             let id = security.node.id;
-            /* we can have same securites from multiple markets, so let's
+            /* we can have same securities from multiple markets, so let's
              * select with max volume
              */
             if (!securities[id] ||
