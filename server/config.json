@@ -29,5 +29,8 @@
       "disableStackTrace": false
     }
   },
+  "sms.ru":{
+    "api_id": "sandbox"
+  },
   "legacyExplorer": false
 }

@@ -12,7 +12,7 @@
         "type": "Mailgun",
         "auth": {
           "api_key": "our_key_here",
-          "domain": "klyukin.net"
+          "domain": "mg.finto.me"
         }
       }
     ]

@@ -9,7 +9,8 @@
       "lastInformedValue" : 60.12,
       "maxValue" : 60.7212,
       "minValue" : 59.5188
-    }
+    },
+    "type": "sms"
   },
   "subscription2": {
     "userId": "1a1000000000000000000001",
@@ -21,7 +22,8 @@
       "lastInformedValue" : 70,
       "maxValue" : 71,
       "minValue" : 69
-    }
+    },
+    "type": "email"
   },
   "subscription3": {
     "userId": "1a1000000000000000000001",
@@ -33,7 +35,8 @@
       "lastInformedValue" : 1.10,
       "maxValue" : 1.11,
       "minValue" : 1.09
-    }
+    },
+    "type": "email"
   },
   "subscription4": {
     "userId": "1a1000000000000000000001",
@@ -45,7 +48,8 @@
       "lastInformedValue" : 170000,
       "maxValue" : 171000,
       "minValue" : 169000
-    }
+    },
+    "type": "email"
   },
   "subscription5": {
     "userId": "1a1000000000000000000001",
@@ -57,7 +61,8 @@
       "lastInformedValue" : 85000,
       "maxValue" : 86000,
       "minValue" : 79000
-    }
+    },
+    "type": "email"
   },
   "subscription6": {
     "userId": "1a1000000000000000000001",
@@ -69,6 +74,7 @@
       "lastInformedValue" : 130,
       "maxValue" : 140,
       "minValue" : 120
-    }
+    },
+    "type": "email"
   }
 }

@@ -9,10 +9,7 @@ export default (app) => {
 
   function requestAndProceedLastData() {
     LastData.find()
-      .then((lastDatas) => {
-        let stack = lastDatas;
-        return proceedDataOneByOnePromise(stack);
-      })
+      .then(proceedDataOneByOnePromise)
       .then(() => {
         console.log('all notifyLoop data proceeded');
         setTimeout(requestAndProceedLastData, 60 * 1000);

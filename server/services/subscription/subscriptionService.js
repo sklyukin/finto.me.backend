@@ -1,9 +1,11 @@
 import EmailService from '../email/emailService';
+import {SmsRuService} from '../../services/sms/SmsRuService';
 import loopback from 'loopback';
 import _ from 'lodash';
 import clone from 'clone';
 
 let app = require('../../server');
+let Twilio = app.models.Twilio;
 
 class SubscriptionService {
   static notifySubscription(subscription, lastData) {
@@ -12,25 +14,35 @@ class SubscriptionService {
         user.subscriptions.getAsync({
           include: 'lastData'
         })
-        .then((subscriptions) => {
-          subscriptions = subscriptions.filter(
-            s => s.lastData() && s.lastData().value);
-          if (user.email) {
-            SubscriptionService.emailNotification({
-              user, subscription, lastData,
-              subscriptions: subscriptions.map(clone)
-            });
-          }
-          let promises = subscriptions.map(
-            SubscriptionService._updateSubscriptionState);
-          return Promise.all(promises);
-        })
-      );
+          .then((subscriptions) => {
+            subscriptions = subscriptions.filter(
+                s => s.lastData() && s.lastData().value);
+
+            switch (subscription.type) {
+              case "sms":
+                if (user.phone) {
+                  SubscriptionService.smsNotification({user, subscription, lastData});
+                }
+                break;
+              case "email":
+                if (user.email) {
+                  SubscriptionService.emailNotification({
+                    user, subscription, lastData,
+                    subscriptions: subscriptions.filter(subscription => subscription.type === 'email').map(clone)
+                  });
+                }
+                break;
+            }
+            let promises = subscriptions.map(
+              SubscriptionService._updateSubscriptionState);
+            return Promise.all(promises);
+          })
+    );
   }
 
   static emailNotification({
     user, subscription, lastData, subscriptions
-  }) {
+    }) {
     let render = loopback.template(`${__dirname}/email/notification.ejs`);
     let html = render({
       subscriptions, user
@@ -40,6 +52,10 @@ class SubscriptionService {
       user,
       subject: `Уведомление: ${lastData.title}`
     }).catch(err => console.error('emailNotification Error: ', err));
+  }
+
+  static smsNotification({user, subscription, lastData}) {
+    SmsRuService.send(user.phone, `${lastData.title} ${lastData.value}`);
   }
 
   //after user informed, let's update state

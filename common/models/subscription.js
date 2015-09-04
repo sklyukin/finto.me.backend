@@ -20,7 +20,7 @@ module.exports = (Subscription) => {
     }
     let percent = this.options.percentChange;
     //preventing spam, should be removed here in future
-    percent = percent > 0.2 ? percent : 0.2;
+    percent = percent > 0.1 ? percent : 0.1;
     percent = percent / 100;
 
     let minValue = value - percent * Math.abs(value);
