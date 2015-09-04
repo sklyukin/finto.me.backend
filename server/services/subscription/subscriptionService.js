@@ -55,7 +55,7 @@ class SubscriptionService {
   }
 
   static smsNotification({user, subscription, lastData}) {
-    SmsRuService.send(user.phone, `${lastData.title} ${lastData.value}`);
+    return SmsRuService.send(user.phone, `${lastData.title} ${lastData.value}`);
   }
 
   //after user informed, let's update state

@@ -10,6 +10,19 @@
       "maxValue" : 60.7212,
       "minValue" : 59.5188
     },
+    "type": "email"
+  },
+  "subscription10": {
+    "userId": "1a1000000000000000000001",
+    "dataId" : "USD000UTSTOM",
+    "options": {
+      "percentChange" : 0.2
+    },
+    "state": {
+      "lastInformedValue" : 60.12,
+      "maxValue" : 60.7212,
+      "minValue" : 59.5188
+    },
     "type": "sms"
   },
   "subscription2": {

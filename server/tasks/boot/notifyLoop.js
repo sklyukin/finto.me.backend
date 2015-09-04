@@ -62,11 +62,13 @@ export default (app) => {
       .then((subscriptions) => {
         if (subscriptions.length) {
           console.log(`Found ${subscriptions.length} subscriptions`);
+          let promises = [];
           for (let subscription of subscriptions) {
             console.log('Subscription', subscription);
-            return SubscriptionService.notifySubscription(subscription,
-              lastData);
+            promises.push(SubscriptionService.notifySubscription(subscription,
+              lastData));
           }
+          return Promise.all(promises);
         }
         return null;
       })
