@@ -37,7 +37,8 @@ dataSource.automigrate(['user', 'userIdentity', 'Subscriptions', 'LastData' ], (
     .then(() => simpleLoad('userIdentity', 'userIdentities'))
     .then(() => simpleLoad('Subscription', 'subscriptions'))
     .then(() => simpleLoad('LastData', 'lastDatas'))
+    .catch(console.error)
     .then(() => {
       process.exit();
-    });
+    })
 });

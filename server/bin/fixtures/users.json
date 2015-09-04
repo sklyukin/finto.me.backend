@@ -3,6 +3,8 @@
     "id": "1a1000000000000000000001",
     "email": "stas.msu@gmail.com",
     "password": "stan",
-    "displayName": "Stanislav Klyukin"
+    "displayName": "Stanislav Klyukin",
+    "payedTill": "2030-09-03T07:11:37.072Z",
+    "plan": "basic"
   }
 }

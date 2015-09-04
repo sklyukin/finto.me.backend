@@ -5,7 +5,10 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "payedTill": "date",
+    "plan": "string"
+  },
   "validations": [],
   "relations": {
     "accessTokens": {
