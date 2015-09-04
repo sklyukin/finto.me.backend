@@ -14,7 +14,6 @@ class MicexService {
       let market = row.market_name;
       //[ccp, RPS] we skip REPO market, as it intersect with shares
       if (['ccp', 'repo'].indexOf(market) !== -1) {
-        console.log(`market ${market} skipped`);
         return Promise.resolve();
       }
       return Micex.securitiesMarketdata(engine, market)
