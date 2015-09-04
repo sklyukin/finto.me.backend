@@ -18,19 +18,23 @@ class SubscriptionService {
             subscriptions = subscriptions.filter(
                 s => s.lastData() && s.lastData().value);
 
+            let subscriptionsToUpdate = [];
             switch (subscription.type) {
               case "sms":
                 if (user.phone) {
                   SubscriptionService.smsNotification({user, subscription, lastData});
                 }
+                subscriptionsToUpdate = [subscription];
                 break;
               case "email":
+                let emailSubscriptions =  subscriptions.filter(subscription => subscription.type === 'email');
                 if (user.email) {
                   SubscriptionService.emailNotification({
                     user, subscription, lastData,
-                    subscriptions: subscriptions.filter(subscription => subscription.type === 'email').map(clone)
+                    subscriptions: emailSubscriptions.map(clone)
                   });
                 }
+                subscriptionsToUpdate = emailSubscriptions;
                 break;
             }
             let promises = subscriptions.map(
