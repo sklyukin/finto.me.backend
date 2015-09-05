@@ -10,6 +10,7 @@ let Email = app.models.Email;
 let AccessToken = app.models.accessToken;
 const FROM_DOMAIN = app.get('email').fromDomain;
 const WEB_APP = app.get('webApp').url;
+const APP_NAME = app.get('name');
 
 class EmailService {
   static send(customParams) {
@@ -18,8 +19,8 @@ class EmailService {
       if (!customParams.user.email) throw 'parameter "user.email" is required for sendEmail';
       if (!customParams.html) throw 'parameter "html" is required for sendEmail';
       let params = {
-        from: `Finto.me <noreply@${FROM_DOMAIN}>`,
-        subject: 'finto.me'
+        from: `${APP_NAME} <noreply@${FROM_DOMAIN}>`,
+        subject: APP_NAME
       };
       _.assign(params, customParams);
       let user = customParams.user;
@@ -29,6 +30,7 @@ class EmailService {
 
         let tpl = fs.readFileSync(filename, 'utf8');
         let html = ejs.render(tpl, {
+          APP_NAME: APP_NAME,
           html: params.html,
           homeLink: AuthService.WebAppLinkWithToken(accessToken)
         }, {
