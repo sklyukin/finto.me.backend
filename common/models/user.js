@@ -20,6 +20,7 @@ module.exports = (user) => {
     ];
 
     let userId = ctx.instance.id;
+    App.setCurrentUser(userId);
     let promises = defaultSubscriptions.map((data) => {
       data.userId = userId;
       return Subscription.create(data).then((subscription) => {

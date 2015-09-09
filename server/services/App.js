@@ -2,6 +2,13 @@ let loopback = require('loopback'),
   app = require('../server');
 
 class App {
+  static setCurrentUser(userId) {
+    let ctx = loopback.getCurrentContext();
+    if (ctx) {
+      ctx.userId = userId;
+    }
+  }
+
   static isWebRequest() {
     return loopback.getCurrentContext() ? true : false;
   }
@@ -13,7 +20,8 @@ class App {
       //so it is console app.
       return Promise.resolve(null);
     }
-    let userId = context.get('accessToken').userId;
+    let accessToken = context.get('accessToken');
+    let userId = accessToken ? accessToken.userId : context.userId;
     if (!userId) {
       return Promise.resolve(null);
     }
