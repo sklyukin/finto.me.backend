@@ -12,7 +12,7 @@ export default (app) => {
       .then(proceedDataOneByOnePromise)
       .then(() => {
         console.log('all notifyLoop data proceeded');
-        setTimeout(requestAndProceedLastData, 60 * 1000);
+        setTimeout(requestAndProceedLastData, 5 * 60 * 1000);
       });
   }
 
