@@ -7,7 +7,7 @@ RUN  apt-get update && apt-get install -y -q --no-install-recommends \
 #to verify if we need this
 
 RUN npm install pm2 -g;
-RUN echo 3;
+RUN echo 4;
 RUN mkdir /flaper.api && \
     git clone https://github.com/sklyukin/finto.me.backend.git /finto/backend --depth 1 && echo 1 > /dev/null && \
     cd /finto/backend && npm install;
