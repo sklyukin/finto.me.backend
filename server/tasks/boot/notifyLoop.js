@@ -9,10 +9,15 @@ export default (app) => {
 
   function requestAndProceedLastData() {
     let hourAgo = new Date(new Date() - 60 * 60 * 1000);
-    LastData.find({where: {updated: {$gt : hourAgo}}})
+    LastData.find({where: {updated: {gt: hourAgo}}})
       .then(proceedDataOneByOnePromise)
       .then(() => {
         console.log('all notifyLoop data proceeded');
+        setTimeout(requestAndProceedLastData, 5 * 60 * 1000);
+      })
+      .catch((error) => {
+        console.log('requestAndProceed error occured');
+        console.error(error);
         setTimeout(requestAndProceedLastData, 5 * 60 * 1000);
       });
   }
@@ -20,6 +25,7 @@ export default (app) => {
 
 
   function proceedDataOneByOnePromise(stack) {
+    console.log('starting proceeding stack', stack.length);
     return new Promise((resolve, reject) => {
       proceedDataOneByOne(stack, resolve);
     });
@@ -30,6 +36,8 @@ export default (app) => {
   */
   function proceedDataOneByOne(stack, cb) {
     if (!stack.length) return cb();
+    if (stack.length%100===0)
+      console.log('left to proceed for notifications', stack.length);
     let lastData = stack.pop();
     // maybe data was already updated, so let's use most actual data
     LastData.findById(lastData.dataId)

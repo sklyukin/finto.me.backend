@@ -34,7 +34,7 @@ export default (app) => {
         console.log(`${time} Micex data saved`);
       })
       .catch((error) => {
-        console.log('error occured');
+        console.log('Micex update error occured');
         console.error(error);
       });
   }
