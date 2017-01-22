@@ -1,7 +1,7 @@
 {
   "mongo": {
     "host": "mongo",
-    "database": "flaper",
+    "database": "fintome",
     "name": "mongo",
     "connector": "mongodb",
     "allowExtendedOperators": true
