@@ -8,7 +8,8 @@ export default (app) => {
   requestAndProceedLastData();
 
   function requestAndProceedLastData() {
-    LastData.find()
+    let hourAgo = new Date(new Date() - 60 * 60 * 1000);
+    LastData.find({where: {updated: {$gt : hourAgo}}})
       .then(proceedDataOneByOnePromise)
       .then(() => {
         console.log('all notifyLoop data proceeded');
