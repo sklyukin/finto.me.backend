@@ -20,6 +20,9 @@
       "type": "object",
       "required": true
     },
+    "userId": {
+      "required": true
+    },
     "state": {
       "type": "object"
     }

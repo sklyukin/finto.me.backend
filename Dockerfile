@@ -5,7 +5,7 @@ RUN  apt-get update && apt-get install -y -q --no-install-recommends \
 
 RUN npm install pm2 -g;
 # inc to add update from git to build
-RUN echo 0 > /dev/null;
+RUN echo 1 > /dev/null;
 RUN git clone https://github.com/sklyukin/finto.me.backend.git /finto/backend --depth 1 && \
     cd /finto/backend && npm install;
 WORKDIR /finto/backend;
